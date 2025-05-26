@@ -1,3 +1,4 @@
+// babel.config.js
 module.exports = {
   presets: [
     '@babel/preset-env',
@@ -6,7 +7,7 @@ module.exports = {
   ],
   plugins: [
     [
-      '@emotion',
+      '@emotion/babel-plugin',
       { sourceMap: true, autoLabel: 'dev-only', labelFormat: '[local]' },
     ],
   ],
