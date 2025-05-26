@@ -64,6 +64,9 @@ const Header = () => {
               <Link href="#schedule">시간표</Link>
             </li>
             <li>
+              <Link href="#sponser">후원사</Link>
+            </li>
+            <li>
               <Link
                 href="https://gdsc-knu.com"
                 target="_blank"

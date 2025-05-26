@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import Header from './components/Header';
 import SessionInfo from './components/SessionInfo';
+import SponserInfo from './components/SponserInfo';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           `}
         >
           <SessionInfo />
+          <SponserInfo />
         </div>
       </main>
     </>
