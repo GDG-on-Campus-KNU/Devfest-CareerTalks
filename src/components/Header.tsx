@@ -1,36 +1,46 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+
 import logo from '../assets/GDG-Sticker-Brackets.mp4';
 
 const Header = () => {
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const headerOffset = 54;
+    const elementPosition = el.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth',
+    });
+  };
   return (
     <header
       role="banner"
       css={css`
         position: fixed;
-        top: 0px;
-        left: 0px;
-        margin: auto;
-        z-index: 100;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 54px;
-        background-color: rgb(255, 255, 255);
+        background: #fff;
+        z-index: 100;
       `}
     >
       <div
         css={css`
-          box-sizing: border-box;
           display: flex;
-          width: 100%;
-          height: 100%;
-          max-width: 1156px;
-          -webkit-box-pack: justify;
-          justify-content: space-between;
-          -webkit-box-align: center;
           align-items: center;
-          margin: auto;
-          text-align: center;
+          justify-content: space-between;
+          width: 100%;
+          max-width: 1156px;
+          height: 100%;
+          margin: 0 auto;
           padding: 8px 22px;
+          box-sizing: border-box;
         `}
       >
         <video
@@ -51,21 +61,31 @@ const Header = () => {
         <nav aria-label="주요 메뉴">
           <ul
             css={css`
-              list-style-type: none;
-              list-style: none;
-              gap: 33px;
               display: flex;
+              gap: 33px;
+              margin: 0;
+              padding: 0;
+              list-style: none;
             `}
           >
-            <li>
-              <Link href="#about">소개</Link>
-            </li>
-            <li>
-              <Link href="#schedule">시간표</Link>
-            </li>
-            <li>
-              <Link href="#sponser">후원사</Link>
-            </li>
+            {[
+              { label: '소개', id: 'about' },
+              { label: '시간표', id: 'schedule' },
+              { label: '후원사', id: 'sponser' },
+            ].map((item) => (
+              <li key={item.id}>
+                <Link
+                  href={`#${item.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(item.id);
+                  }}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+
             <li>
               <Link
                 href="https://gdsc-knu.com"
@@ -86,8 +106,9 @@ export default Header;
 
 const Link = styled.a`
   font-size: 13px;
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
+  cursor: pointer;
   &:hover {
     opacity: 0.8;
   }

@@ -69,6 +69,6 @@ const ThirdImg = styled.img`
   height: auto;
 
   @media (max-width: 800px) {
-    width: 80px;
+    width: 60px;
   }
 `;

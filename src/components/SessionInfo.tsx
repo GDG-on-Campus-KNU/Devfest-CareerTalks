@@ -62,7 +62,7 @@ const SessionCard = styled.div`
   }
 
   @media (max-width: 800px) {
-    height: 200px;
+    height: 270px;
   }
 `;
 
