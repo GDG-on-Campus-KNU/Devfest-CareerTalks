@@ -5,6 +5,7 @@ import logo from '../assets/GDG-Sticker-Brackets.mp4';
 const Header = () => {
   return (
     <header
+      role="banner"
       css={css`
         position: fixed;
         top: 0px;
@@ -32,23 +33,22 @@ const Header = () => {
           padding: 8px 22px;
         `}
       >
-        <>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            css={css`
-              height: 100%; /* 헤더 높이(54px)에 맞춰 100% */
-              width: auto; /* 비율 유지하며 가로 크기 자동 계산 */
-              object-fit: cover; /* cover: 꽉 채우기, contain: 전체가 보이도록 */
-            `}
-          >
-            <source src={logo} type="video/mp4" />
-          </video>
-        </>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          aria-hidden="true"
+          css={css`
+            height: 100%;
+            width: auto;
+            object-fit: cover;
+          `}
+        >
+          <source src={logo} type="video/mp4" />
+        </video>
 
-        <div>
+        <nav aria-label="주요 메뉴">
           <ul
             css={css`
               list-style-type: none;
@@ -57,11 +57,23 @@ const Header = () => {
               display: flex;
             `}
           >
-            <ListItem>소개</ListItem>
-            <ListItem>시간표</ListItem>
-            <ListItem>GDGoC KNU 보러가기</ListItem>
+            <li>
+              <Link href="#about">소개</Link>
+            </li>
+            <li>
+              <Link href="#schedule">시간표</Link>
+            </li>
+            <li>
+              <Link
+                href="https://gdsc-knu.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GDGoC KNU 보러가기
+              </Link>
+            </li>
           </ul>
-        </div>
+        </nav>
       </div>
     </header>
   );
@@ -69,6 +81,11 @@ const Header = () => {
 
 export default Header;
 
-const ListItem = styled.li`
+const Link = styled.a`
   font-size: 13px;
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    opacity: 0.8;
+  }
 `;
