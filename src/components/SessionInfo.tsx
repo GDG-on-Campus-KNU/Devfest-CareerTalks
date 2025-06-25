@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { scheduleData } from './SessionData';
+import { Link } from 'react-router-dom';
 
 // ─── 1) 컨테이너 ───────────────────────────
 const Container = styled.div`
@@ -92,13 +93,14 @@ const SpeakerInfo = styled.div`
   font-size: 12px;
   color: #222;
 `;
-const ApplyButton = styled.button`
+const ApplyLink = styled(Link)`
   background: #000;
   color: #fff;
-  border: none;
   padding: 4px 12px;
   font-size: 12px;
   border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
   cursor: pointer;
 `;
 
@@ -109,6 +111,7 @@ export default function SessionInfo() {
   return (
     <Container>
       {/*데스크탑: 2열 그리드*/}
+      <h1>세션 소개</h1>
       <Grid>
         <Pillar>
           <PillarHeader>1부 세션</PillarHeader>
@@ -119,7 +122,15 @@ export default function SessionInfo() {
               <SessionDesc>{s.desc}</SessionDesc>
               <SpeakerRow>
                 <SpeakerInfo>{s.speaker}</SpeakerInfo>
-                {s.hasBtn && <ApplyButton>영상</ApplyButton>}
+                {s.hasBtn && (
+                  <ApplyLink
+                    to={s.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    영상
+                  </ApplyLink>
+                )}
               </SpeakerRow>
             </SessionCard>
           ))}
@@ -134,7 +145,15 @@ export default function SessionInfo() {
               <SessionDesc>{s.desc}</SessionDesc>
               <SpeakerRow>
                 <SpeakerInfo>{s.speaker}</SpeakerInfo>
-                {s.hasBtn && <ApplyButton>영상</ApplyButton>}
+                {s.hasBtn && (
+                  <ApplyLink
+                    to={s.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    영상
+                  </ApplyLink>
+                )}
               </SpeakerRow>
             </SessionCard>
           ))}
